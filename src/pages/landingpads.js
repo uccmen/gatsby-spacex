@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 
 const LandingPads = ({data}) => {
   if (typeof window === 'undefined') {
-    return;
+    return null;
   }
 
   const bounds = data.spacexapi.landpads.map(landpad => {

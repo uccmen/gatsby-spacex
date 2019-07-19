@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 
 const Ships = ({data}) => {
   if (typeof window === 'undefined') {
-    return;
+    return null;
   }
 
   const bounds = data.spacexapi.ships.map(ship => {

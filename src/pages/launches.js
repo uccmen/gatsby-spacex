@@ -5,10 +5,6 @@ import Layout from "../components/layout";
 import moment from "moment";
 
 const Launches = ({data}) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
   return (
     <Layout>
       <SEO title="SPACEX LAUNCH PADS" />

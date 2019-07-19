@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 
 const LaunchPads = ({data}) => {
   if (typeof window === 'undefined') {
-    return;
+    return null;
   }
 
   const bounds = data.spacexapi.launchpads.map(launchpad => {
