@@ -1,7 +1,6 @@
 import React from "react"
 import {graphql, Link} from 'gatsby'
 import { Map as LeafletMap, Marker, Popup, TileLayer } from 'react-leaflet'
-import { Helmet } from "react-helmet"
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 
@@ -19,10 +18,6 @@ const LandingPads = ({data}) => {
     <Layout>
       <SEO title="SPACEX LANDING PADS" />
       <h1>SpaceX landing pads</h1>
-      <Helmet>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
-      </Helmet>
       <LeafletMap bounds={bounds} zoom={10}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
