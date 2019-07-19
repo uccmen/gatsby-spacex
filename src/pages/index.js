@@ -9,17 +9,19 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
+    <p>Welcome to my Gatsby PlayDay project.</p>
+    <p>Pages below contains unofficial SpaceX data queried with GraphQL at
+      <a href={'https://github.com/spacexland/api'}> https://api.spacex.land/graphql/</a>
+    </p>
     <ul>
-      <li><Link to="/page-2/">Go to page 2</Link></li>
       <li><Link to="/launchpads/">Launch pads</Link></li>
       <li><Link to="/landingpads/">Landing pads</Link></li>
       <li><Link to="/ships/">Ships</Link></li>
+      <li><Link to="/launches/">Launches</Link></li>
     </ul>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem`, display: 'float' }}>
+      <Image />
+    </div>
   </Layout>
 );
 

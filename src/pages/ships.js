@@ -4,6 +4,8 @@ import { Map as LeafletMap, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Helmet } from "react-helmet"
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import SEO from "../components/seo";
+import Layout from "../components/layout";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -20,7 +22,9 @@ const Ships = ({data}) => {
   });
 
   return (
-    <div>
+    <Layout>
+      <SEO title="SPACEX SHIPS" />
+      <h1>SpaceX ships</h1>
       <Helmet>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" rel="stylesheet"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
@@ -43,8 +47,8 @@ const Ships = ({data}) => {
           return (
             <Marker key={id} position={position}>
               <Popup>
-                <img src={image} alt={name}/>
-                <b><a href={url}>{name}</a></b><br/>
+                <a href={image} target={'_blank'}><img src={image} alt={name} height={'100%'} width={'100%'}/></a>
+                <b><a href={url} target={'_blank'}>{name}</a></b><br/>
                 Status: {status}<br/>
                 Year built: {year_built}<br/>
                 Port: {home_port}<br/>
@@ -56,7 +60,7 @@ const Ships = ({data}) => {
         })}
       </LeafletMap>
       <Link to="/">Home page</Link>
-    </div>
+    </Layout>
   );
 };
 
