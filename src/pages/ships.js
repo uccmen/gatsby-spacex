@@ -1,0 +1,85 @@
+import React from "react"
+import {graphql, Link} from "gatsby";
+import { Map as LeafletMap, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Helmet } from "react-helmet"
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
+const Ships = ({data}) => {
+  const bounds = data.spacexapi.ships.map(ship => {
+    const {position: {longitude, latitude}} = ship;
+    return [latitude || 24.8036904, longitude || -81.7718049];
+  });
+
+  return (
+    <div>
+      <Helmet>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
+      </Helmet>
+      <LeafletMap bounds={bounds} zoom={10}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        />
+        {data.spacexapi.ships.map(ship => {
+          const {
+            position: {longitude, latitude},
+            name, image, status,
+            year_built, home_port, weight_kg, type, url, id
+          } = ship;
+          const position = [
+            latitude || 24.8036904,
+            longitude || -81.7718049
+          ];
+          return (
+            <Marker key={id} position={position}>
+              <Popup>
+                <img src={image} alt={name}/>
+                <b><a href={url}>{name}</a></b><br/>
+                Status: {status}<br/>
+                Year built: {year_built}<br/>
+                Port: {home_port}<br/>
+                Weight(kg): {weight_kg}<br/>
+                Type: {type}<br/>
+              </Popup>
+            </Marker>
+          )
+        })}
+      </LeafletMap>
+      <Link to="/">Home page</Link>
+    </div>
+  );
+};
+
+export const query = graphql`
+  query {
+    spacexapi {
+      ships {
+        position {
+          latitude
+          longitude
+        }
+        name
+        image
+        status
+        year_built
+        home_port
+        weight_kg
+        type
+        url
+        id
+      }
+    }
+  }
+`;
+
+export default Ships
