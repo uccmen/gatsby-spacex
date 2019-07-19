@@ -21,6 +21,10 @@ const LandingPads = ({data}) => {
     return [latitude, longitude];
   });
 
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   return (
     <Layout>
       <SEO title="SPACEX LANDING PADS" />

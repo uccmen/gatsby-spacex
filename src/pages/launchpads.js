@@ -16,6 +16,10 @@ L.Icon.Default.mergeOptions({
 });
 
 const LaunchPads = ({data}) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const bounds = data.spacexapi.launchpads.map(launchpad => {
     const {location: {longitude, latitude}} = launchpad;
     return [latitude, longitude];

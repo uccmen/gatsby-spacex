@@ -16,6 +16,10 @@ L.Icon.Default.mergeOptions({
 });
 
 const Ships = ({data}) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const bounds = data.spacexapi.ships.map(ship => {
     const {position: {longitude, latitude}} = ship;
     return [latitude || 24.8036904, longitude || -81.7718049];
