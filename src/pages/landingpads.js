@@ -2,28 +2,18 @@ import React from "react"
 import {graphql, Link} from 'gatsby'
 import { Map as LeafletMap, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Helmet } from "react-helmet"
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-});
-
 const LandingPads = ({data}) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const bounds = data.spacexapi.landpads.map(landpad => {
     const {location: {longitude, latitude}} = landpad;
     return [latitude, longitude];
   });
-
-  if (typeof window === 'undefined') {
-    return;
-  }
 
   return (
     <Layout>
