@@ -18,7 +18,7 @@ const LandingPads = ({data}) => {
     <Layout>
       <SEO title="SPACEX LANDING PADS" />
       <h1>SpaceX landing pads</h1>
-      <LeafletMap bounds={bounds} zoom={12} dragging={false}>
+      <LeafletMap bounds={bounds} zoom={15} dragging={false}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
