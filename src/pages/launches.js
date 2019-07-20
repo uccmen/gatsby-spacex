@@ -20,8 +20,6 @@ const Launches = ({data}) => {
                 {details}
               </p>
               <iframe title={mission_name}
-                      width={560}
-                      height={315}
                       src={video_link && video_link.replace('watch?v=', 'embed/')}
                       frameBorder={0}
                       allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"}
